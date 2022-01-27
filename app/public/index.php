@@ -17,7 +17,7 @@
                 <form action="create.php" method="POST">
                     <?php if (isset($_GET['mess']) && $_GET['mess'] == 'error'){ ?>
                  
-                    <label>To Do</label>
+                    <label>To Do List</label>
                     <input type="text" name="todo" value="Mandatory field">
                     <button type="submit" name="submit">Submit</button>
 
@@ -37,7 +37,7 @@
                 <div class="todo-item">
                     <span id="<?php echo $todo['id']; ?>"
                         class="delete-to-do">x</span>
-                    <?php if($todo['checked']){ ?>
+                    <?php if($todo['completed']){ ?>
                     <input type="checkbox" class="check-box" data-todo-id ="<?php echo $todo['id']; ?>" checked />
                     <h2 class="checked"> <?php echo $todo['title'] ?></h2>
 

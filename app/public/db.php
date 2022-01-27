@@ -5,7 +5,6 @@ try {
     echo 'Connectet to database';
 
 } catch (PDOException $e) {
-    echo $e->getMessage();
-
+    echo "Lost connection : ". $e->getMessage();
 
 }
