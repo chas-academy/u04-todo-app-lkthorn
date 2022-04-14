@@ -1,3 +1,8 @@
+<?php
+require 'db_connection.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,17 +17,61 @@
 <body>
     <div class="main-section">
         <div class="add-section">
-            <form action="">
-                <input type="text" name="title" placeholder="Field required" />
+            <form action="" method="POST" >
+                <?php if(isset($_GET['mess']) && $_GET['mess'] == 'error') { ?>
+                    <input type="text" name="title" placeholder="New task" />
                 <button type="submit"> Add task </button>
+
+                    <?php }else {?>
+                        <input type="text"
+                        name="title"
+                        style="border-color: #ff6666"
+                        placeholder="Field required"/>
+                        <button type="submit"> Add task </button>
+
+
+
+                        <?php } ?>
+                
             </form>
         </div>
+
+        <?php
+        $todos = $conn->query("SELECT * FROM todo_table ORDER BY id DESC");
+        ?>
         <div class="todo-section">
-            <div class="todo-item">
-                <input type="checkbox">
-                <h2>This is task 1</h2>
-                <small>created: today</small>
-            </div>
+            <?php if ($todos->rowCount() <= 0) { ?>
+
+                <div class="todo-item">
+                    <!--maybe an image here-->
+                </div>
+            <?php } ?>
+
+            <?php
+            while ($todo = $todos->fetch(PDO::FETCH_ASSOC)) { ?>
+
+                <div class="todo-item">
+                    <span id="<?php echo $todo['id']; ?>" class="remove-to-do">X</span>
+                    <?php if ($todo['done']) { ?>
+                        <input type="checkbox"
+                        class="check-box"
+                        checked />
+
+                        <h2 class="done"><?php echo $todo['title'] ?></h2>
+                        
+                        <?php } else { ?>
+                            <input type="checkbox"
+                            class="check-box" />
+                            <h2><?php echo $todo['title']?></h2>
+
+                        <?php } ?>
+                    <br>
+                    <small>created:<?php echo $todo['date_time'] ?></small>
+
+
+
+                </div>
+            <?php } ?>
         </div>
     </div>
 
