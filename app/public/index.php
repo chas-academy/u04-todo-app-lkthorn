@@ -17,16 +17,18 @@ require 'db_connection.php';
 <body>
     <div class="main-section">
         <div class="add-section">
-            <form action="" method="POST" >
+            <form action="./functionalities/add.php" method="POST" >
                 <?php if(isset($_GET['mess']) && $_GET['mess'] == 'error') { ?>
                     <input type="text" name="title" placeholder="New task" />
-                <button type="submit"> Add task </button>
+                   <button type="submit"> Add task </button>
 
                     <?php }else {?>
+                        <input hidden name="add" value="1" />
                         <input type="text"
                         name="title"
                         style="border-color: #ff6666"
                         placeholder="Field required"/>
+                        <input type="text" name="description" placeholder="Task description" />
                         <button type="submit"> Add task </button>
 
 
@@ -50,8 +52,8 @@ require 'db_connection.php';
             <?php
             while ($todo = $todos->fetch(PDO::FETCH_ASSOC)) { ?>
 
-                <div class="todo-item">
-                    <span id="<?php echo $todo['id']; ?>" class="remove-to-do">X</span>
+                <div class="todo-item">                    
+                    <input type="submit" name="" value="Delete">
                     <?php if ($todo['done']) { ?>
                         <input type="checkbox"
                         class="check-box"
