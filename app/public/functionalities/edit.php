@@ -18,22 +18,26 @@ if (isset($_GET["edit"])) {
 if (isset($_POST["update"], $_GET["edit"])) {
 
     $id = $_GET["edit"];
-    $task = $_POST["task"];
+    $title = $_POST["title"];
     $description = $_POST["description"];
     $created = date("Y-m-d H:i:s");
 
-    $query2 = "UPDATE tasks SET Id = :id, Task = :task, Description = :description, Created = :created
+    $query2 = "UPDATE titles SET Id = :id, Title = :title, Description = :description, Created = :created
     WHERE Id = :id";
 
     $stmt2 = $conn->prepare($query2);
     $stmt2->execute([
         "id" => $id,
-        "task" => $task,
+        "title" => $title,
         "description" => $description,
         "created" => $created
 
     ]);
     header("location: index.php");
 }
+
+?>
+
+
 
 ?>
