@@ -6,19 +6,12 @@ if(isset($_POST['id'])){
 
     $id = $_POST['id'];
 
-    if(empty($id)){
-       echo 0;
-    }else {
-        $stmt = $conn->prepare("DELETE FROM todos WHERE id=?");
-        $res = $stmt->execute([$id]);
-
-        if($res){
-            echo 1;
-        }else {
-            echo 0;
-        }
-        $conn = null;
-        exit();
+    if (isset($_GET['delete'])) {
+        $id = $_GET['delete'];
+        $stmt = $connection->prepare('DELETE FROM todos WHERE id = :id');
+        $stmt->bindValue('id', $id);
+        $stmt->execute();
+    
     }
 }else {
     header("Location: ../index.php?mess=error");
