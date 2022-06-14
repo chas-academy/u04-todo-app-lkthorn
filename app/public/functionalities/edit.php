@@ -2,22 +2,21 @@
 require '../db_connection.php';
 
 
-if (isset($_GET["edit"])) {
+if (isset($_POST["id"])) {
 
-    $id = $_GET['edit'];
-    $query = "SELECT * FROM tasks WHERE id=:id";
+    $id = $_POST['id'];
+    $query = 'SELECT * FROM todo_table WHERE id=:id';
     $stmt = $conn->prepare($query);
 
     $stmt->bindValue("id", $id);
-
     $stmt->execute();
 
     $info = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-if (isset($_POST["update"], $_GET["edit"])) {
+if (isset($_POST["edit"], $_POST["id"])) {
 
-    $id = $_GET["edit"];
+    $id = $_POST["edit"];
     $title = $_POST["title"];
     $description = $_POST["description"];
     $created = date("Y-m-d H:i:s");
@@ -30,10 +29,10 @@ if (isset($_POST["update"], $_GET["edit"])) {
         "id" => $id,
         "title" => $title,
         "description" => $description,
-        "created" => $created
+        "created" => $created,
 
     ]);
-    header("location: index.php");
+    header("location: ../index.php");
 }
 
 ?>

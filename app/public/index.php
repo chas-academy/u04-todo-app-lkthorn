@@ -63,7 +63,8 @@ require 'db_connection.php';
                     
 
                     <div class="edit-item">    
-                <form action="./functionalities/edit.php" method="POST" >                
+                <form action="./functionalities/edit.php" method="POST" >   
+                    <input hidden name="id" value="<?php echo $todo['id'] ?>" >            
                     <input type="submit" name="edit" value="Edit">
                 </form>
                 </div>
