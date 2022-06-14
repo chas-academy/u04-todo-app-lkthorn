@@ -8,7 +8,7 @@ if(isset($_POST['id'])){
 
     if (isset($_GET['delete'])) {
         $id = $_GET['delete'];
-        $stmt = $connection->prepare('DELETE FROM todos WHERE id = :id');
+        $stmt = $connection->prepare('DELETE FROM todo_table WHERE id = :id');
         $stmt->bindValue('id', $id);
         $stmt->execute();
     
