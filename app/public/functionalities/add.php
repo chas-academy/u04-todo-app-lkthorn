@@ -11,7 +11,7 @@ if (isset($_POST['add'])) {
     }
     else {
         $conn = null;
-        exit(header("Location: index.php"));
+        exit(header("Location: ../index.php"));
     }
 
 }

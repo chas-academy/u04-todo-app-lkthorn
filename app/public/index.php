@@ -1,8 +1,7 @@
 <?php
 require 'db_connection.php';
+
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,12 +51,29 @@ require 'db_connection.php';
             <?php
             while ($todo = $todos->fetch(PDO::FETCH_ASSOC)) { ?>
 
-                <div class="todo-item">                    
-                    <input type="submit" name="" value="Delete">
+                <div class="delete-item">    
+                <form action="./functionalities/delete.php" method="POST" >         
+                    <input hidden name="id" value="<?php echo $todo['id'] ?>">   
+                        
+                    <input type="submit" name="delete" value="Delete">
+                </form>
+
+            </div>
+                    
+                    
+
+                    <div class="edit-item">    
+                <form action="./functionalities/edit.php" method="POST" >                
+                    <input type="submit" name="edit" value="Edit">
+                </form>
+                </div>
+
                     <?php if ($todo['done']) { ?>
                         <input type="checkbox"
                         class="check-box"
                         checked />
+
+
 
                         <h2 class="done"><?php echo $todo['title'] ?></h2>
                         
@@ -65,17 +81,16 @@ require 'db_connection.php';
                             <input type="checkbox"
                             class="check-box" />
                             <h2><?php echo $todo['title']?></h2>
+                            <h3><?php echo $todo['description']?></h3>
 
                         <?php } ?>
                     <br>
                     <small>created:<?php echo $todo['date_time'] ?></small>
 
-
-
                 </div>
             <?php } ?>
         </div>
-    </div>
+</div> 
 
 </body>
 
