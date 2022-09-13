@@ -14,7 +14,6 @@ if (isset($_POST['update'])) {
         die("Failed to redirect.");        
     }
     else {
-        $conn = null;
         exit(header("Location: index.php"));
     }
 }

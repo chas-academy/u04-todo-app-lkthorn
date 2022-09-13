@@ -11,8 +11,7 @@ if(isset($_GET['done'])) {
     if(headers_sent()){
         die("Failed to redirect.");
     }
-    else {
-        $conn = null;
+    else {       
         exit(header("Location: index.php"));
     }
 }

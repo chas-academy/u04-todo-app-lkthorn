@@ -9,8 +9,7 @@ if (isset($_POST['add'])) {
     if (headers_sent()) {
         die("Redirect failed.");
     }
-    else {
-        $conn = null;
+    else { 
         exit(header("Location: ../index.php"));
     }
 

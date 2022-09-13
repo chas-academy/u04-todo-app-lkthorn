@@ -18,7 +18,7 @@ $row = $todos->fetch(PDO::FETCH_ASSOC);
 
 <body>
     <?php
-    if (isset($_GET['editTask'])){ ?>
+    if (isset($_GET['update'])){ ?>
         <form action="" method="post">
             <input type="text" name="title" placeholder="Edit your task title" required>
             <input type="text" name="task" placeholder="Edit your task description">
