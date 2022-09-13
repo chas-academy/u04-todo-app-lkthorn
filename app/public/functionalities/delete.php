@@ -1,17 +1,10 @@
 <?php
 require '../db_connection.php';
 
-if(isset($_POST['id'])){
-    
-    $id = $_POST['id'];
-
-    if (isset($_POST['delete'])) {
+    if (isset($_GET['delete'])) {
+        $id = $_GET['delete'];
         $stmt = $conn->prepare('DELETE FROM todo_table WHERE id = :id');
         $stmt->bindValue('id', $id);
         $stmt->execute();
 
-        header("Location: ../index.php");
-    }
-}else {
-    header("Location: ../index.php?mess=error");
-}
+        header("Location: ../index.php");    }
