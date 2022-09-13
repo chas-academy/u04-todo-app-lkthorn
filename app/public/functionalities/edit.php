@@ -33,6 +33,33 @@ if (isset($_POST["update"], $_GET["edit"])) {
 
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <form class="edit_form" action="" method="post">
+
+        <label for="task">Edit task:</label>
+
+        <input type="text" id="task" value="<?php echo $info['Title'] ?>" name="title">
+        <label class="space" for="description">Edit description:</label>
+        <input type="text" id="description" value="<?php echo $info['Description'] ?>" name="description">
+       
+
+        <button type="submit" name="update">Update</button>
 
 
-?>
+
+    </form>
+
+    </body>
+
+</html>
