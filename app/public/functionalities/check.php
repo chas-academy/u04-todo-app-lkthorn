@@ -1,33 +1,18 @@
 <?php
 require '../db_connection.php';
 
-if(isset($_POST['id'])){
-    
 
-    $id = $_POST['id'];
+if(isset($_GET['check'])) {
+    $id = $_GET['check'];
+    $stmt = $conn->prepare('UPDATE todo_table SET done = true WHERE id = :id');
+    $stmt->bindValue(':id', $id);
+    $stmt->execute();
 
-    if(empty($id)){
-       echo 'error';
-    }else {
-        $todos = $conn->prepare("SELECT id, checked FROM todo_table WHERE id=?");
-        $todos->execute([$id]);
-
-        $todo = $todos->fetch();
-        $uId = $todo['id'];
-        $checked = $todo['checked'];
-
-        $uChecked = $checked ? 0 : 1;
-
-        $res = $conn->query("UPDATE todo_table SET checked=$uChecked WHERE id=$uId");
-
-        if($res){
-            echo $checked;
-        }else {
-            echo "error";
-        }
-        $conn = null;
-        exit();
+    if(headers_sent()){
+        die("Failed to redirect.");
     }
-}else {
-    header("Location: ../index.php?mess=error");
+    else {
+        $conn = null;
+        exit(header("Location: index.php"));
+    }
 }
