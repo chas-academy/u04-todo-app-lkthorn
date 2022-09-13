@@ -24,8 +24,7 @@ require 'db_connection.php';
                     <?php }else {?>
                         <input hidden name="add" value="1" />
                         <input type="text"
-                        name="title"
-                        style="border-color: #ff6666"
+                        name="title"                        
                         placeholder="Field required"/>
                         <input type="text" name="description" placeholder="Task description" />
                         <button type="submit"> Add task </button>
@@ -59,12 +58,12 @@ require 'db_connection.php';
                 </form>
 
             </div>
-                    
-                    
 
                     <div class="edit-item">    
                 <form action="./functionalities/edit.php" method="POST" >   
-                    <input hidden name="id" value="<?php echo $todo['id'] ?>" >            
+                    <input hidden name="id" value="<?php echo $todo['id'] ?>" >
+                    <input hidden name="title" value="<?php echo $todo['title'] ?>">            
+                    <input hidden name="description" value="<?php echo $todo['description'] ?>">      
                     <input type="submit" name="edit" value="Edit">
                 </form>
                 </div>
