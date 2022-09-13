@@ -5,7 +5,7 @@ if (isset($_POST['update'])) {
     $updateTitle = $_POST['title'];
     $updateTask = $_POST['task'];
     $id = $_GET['editTask'];
-    $stmt = $conn->prepare('UPDATE todo_table SET title = :title, task = :task, done = false WHERE id = :id');
+    $stmt = $conn->prepare('UPDATE todos SET title = :title, task = :task, done = false WHERE id = :id');
     $stmt->bindParam(':id', $id);
     $stmt->bindParam(':title', $updateTitle);
     $stmt->bindParam(':task', $updateTask);

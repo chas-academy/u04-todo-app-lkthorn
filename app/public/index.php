@@ -1,6 +1,9 @@
 <?php
 require 'db_connection.php';
 
+$todos = $conn->query("SELECT * FROM todos");
+$row = $todos->fetch(PDO::FETCH_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,84 +17,54 @@ require 'db_connection.php';
 </head>
 
 <body>
-    <div class="main-section">
-        <div class="add-section">
-            <form action="./functionalities/add.php" method="POST" >
-                <?php if(isset($_GET['mess']) && $_GET['mess'] == 'error') { ?>
-                    <input type="text" name="title" placeholder="New task" />
-                   <button type="submit"> Add task </button>
+    <?php
+    if (isset($_GET['editTask'])){ ?>
+        <form action="" method="post">
+            <input type="text" name="title" placeholder="Edit your task title" required>
+            <input type="text" name="task" placeholder="Edit your task description">
+            <button type="submit" class="" name="update">Update</button>
+        </form>
 
-                    <?php }else {?>
-                        <input hidden name="add" value="1" />
-                        <input type="text"
-                        name="title"                        
-                        placeholder="Field required"/>
-                        <input type="text" name="description" placeholder="Task description" />
-                        <button type="submit"> Add task </button>
+    <?php
+    }
+    else { ?>
+    <form action="" method="post">
+        <input type="text" name="title" placeholder="Enter your task title" required>
+        <input type="text" name="task" placeholder="Enter your task description">
+        <button type="submit" class="" name="add">Add task</button>
+    </form>
+    <?php
+    }
+    ?>
+<?php
+$todos = $conn->query("SELECT * FROM todos");
+while($row = $todos->fetch(PDO::FETCH_ASSOC)) {
+    echo"<br>";
+?>
+    <section class="todo-card"> <?php
+    
+    if($row['done'] === 1) { ?>
+        <section class="tittle-done"><?php echo $row['title'] . "\n"; ?></section>
+        <section class="task"><?php echo $row['task'] . "\n"; ?></section>
+    
+    <?php 
+    }
+    else {?>
+        <section class="tittle"><?php echo $row['title'] . "\n"; ?></section>
+        <section class="task"><?php echo $row['task'] . "\n"; ?></section>
+    <?php
+    }
+    ?>
 
-
-
-                        <?php } ?>
-                
-            </form>
-        </div>
-
+        <section class="icons">
+        <br>
+	    <a href="index.php?taskDone=<?php echo $row['id']; ?>"><button>&#10003</button></a> 
+	    <a href="index.php?editTask=<?php echo $row['id']; ?>"><button>&#9998;</button></a> 
+	    <a href="index.php?=<?php echo $row['id']; ?>"><button>&#10005;</button></a>
+        </section>
+        
         <?php
-        $todos = $conn->query("SELECT * FROM todo_table ORDER BY id DESC");
-        ?>
-        <div class="todo-section">
-            <?php if ($todos->rowCount() <= 0) { ?>
-
-                <div class="todo-item">
-                    <!--maybe an image here-->
-                </div>
-            <?php } ?>
-
-            <?php
-            while ($todo = $todos->fetch(PDO::FETCH_ASSOC)) { ?>
-
-                <div class="delete-item">    
-                <form action="./functionalities/delete.php" method="POST" >         
-                    <input hidden name="id" value="<?php echo $todo['id'] ?>">   
-                        
-                    <input type="submit" name="delete" value="Delete">
-                </form>
-
-            </div>
-
-                    <div class="edit-item">    
-                <form action="./functionalities/edit.php" method="POST" >   
-                    <input hidden name="id" value="<?php echo $todo['id'] ?>" >
-                    <input hidden name="title" value="<?php echo $todo['title'] ?>">            
-                    <input hidden name="description" value="<?php echo $todo['description'] ?>">      
-                    <input type="submit" name="edit" value="Edit">
-                </form>
-                </div>
-
-                    <?php if ($todo['done']) { ?>
-                        <input type="checkbox"
-                        class="check-box"
-                        checked />
-
-
-
-                        <h2 class="done"><?php echo $todo['title'] ?></h2>
-                        
-                        <?php } else { ?>
-                            <input type="checkbox"
-                            class="check-box" />
-                            <h2><?php echo $todo['title']?></h2>
-                            <h3><?php echo $todo['description']?></h3>
-
-                        <?php } ?>
-                    <br>
-                    <small>created:<?php echo $todo['date_time'] ?></small>
-
-                </div>
-            <?php } ?>
-        </div>
-</div> 
-
-</body>
-
+}
+?>      </section>
+    </body>
 </html>

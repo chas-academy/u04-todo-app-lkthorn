@@ -2,9 +2,9 @@
 require '../db_connection.php';
 
 
-if(isset($_GET['check'])) {
-    $id = $_GET['check'];
-    $stmt = $conn->prepare('UPDATE todo_table SET done = true WHERE id = :id');
+if(isset($_GET['done'])) {
+    $id = $_GET['done'];
+    $stmt = $conn->prepare('UPDATE todos SET done = true WHERE id = :id');
     $stmt->bindValue(':id', $id);
     $stmt->execute();
 
