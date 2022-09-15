@@ -1,5 +1,10 @@
 <?php
 require 'db_connection.php';
+require 'functionalities/add.php';
+require 'functionalities/check.php';
+require 'functionalities/delete.php';
+require 'functionalities/edit.php';
+
 
 $todos = $conn->query("SELECT * FROM todos");
 $row = $todos->fetch(PDO::FETCH_ASSOC);
@@ -58,9 +63,10 @@ while($row = $todos->fetch(PDO::FETCH_ASSOC)) {
 
         <section class="icons">
         <br>
-	    <a href="index.php?taskDone=<?php echo $row['id']; ?>"><button>&#10003</button></a> 
-	    <a href="index.php?editTask=<?php echo $row['id']; ?>"><button>&#9998;</button></a> 
-	    <a href="index.php?=<?php echo $row['id']; ?>"><button>&#10005;</button></a>
+	    <a href="index.php?taskDone=<?php echo $row['id']; ?>"><button>&#10003;</button></a> 
+	    <a href="index.php?update=<?php echo $row['id']; ?>"><button>&#9998;</button></a> 
+        <a href="index.php?delete=<?php echo $row['id']; ?>"><button>&#10005;</button></a>
+	    
         </section>
         
         <?php

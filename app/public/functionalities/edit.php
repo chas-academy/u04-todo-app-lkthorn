@@ -1,10 +1,10 @@
 <?php
-require '../db_connection.php';
+require './db_connection.php';
 
 if (isset($_POST['update'])) {
     $updateTitle = $_POST['title'];
     $updateTask = $_POST['task'];
-    $id = $_GET['editTask'];
+    $id = $_GET['update'];
     $stmt = $conn->prepare('UPDATE todos SET title = :title, task = :task, done = false WHERE id = :id');
     $stmt->bindParam(':id', $id);
     $stmt->bindParam(':title', $updateTitle);
@@ -14,6 +14,6 @@ if (isset($_POST['update'])) {
         die("Failed to redirect.");        
     }
     else {
-        exit(header("Location: index.php"));
+        exit(header("Location: ./index.php"));
     }
 }

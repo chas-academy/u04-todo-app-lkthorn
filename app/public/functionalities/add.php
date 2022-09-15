@@ -1,5 +1,5 @@
 <?php
-require '../db_connection.php';
+require './db_connection.php';
 
 if (isset($_POST['add'])) {
     $title = $_POST['title'];
@@ -10,7 +10,7 @@ if (isset($_POST['add'])) {
         die("Redirect failed.");
     }
     else { 
-        exit(header("Location: ../index.php"));
+        exit(header("Location: ./index.php"));
     }
 
 }

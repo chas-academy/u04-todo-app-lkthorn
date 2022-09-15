@@ -3,7 +3,7 @@
 $sName = "mysql:host=mysql;dbname=tutorial";
 $userName = "tutorial";
 $password = "secret";
-$db_name = "tutorial";
+$db_name = "todos";
 
 try {
     $conn = new PDO($sName, $userName, $password);
