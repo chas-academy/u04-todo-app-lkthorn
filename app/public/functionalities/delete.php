@@ -1,5 +1,5 @@
 <?php
-require '../db_connection.php';
+require './db_connection.php';
 
     if (isset($_GET['delete'])) {
         $id = $_GET['delete'];
@@ -7,4 +7,5 @@ require '../db_connection.php';
         $stmt->bindValue('id', $id);
         $stmt->execute();
 
-        header("Location: ../index.php");    }
+        header("Location: ./index.php");    
+    }
