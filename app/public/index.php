@@ -14,20 +14,21 @@ $row = $todos->fetch(PDO::FETCH_ASSOC);
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do List</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>To-do list</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
+    <h1>To-do List</h1>
     <?php
     if (isset($_GET['update'])){ ?>
         <form action="" method="post">
             <input type="text" name="title" placeholder="Edit your task title" required>
             <input type="text" name="task" placeholder="Edit your task description">
-            <button type="submit" class="" name="update">Update</button>
+            <button type="submit" class="update" name="update">Update</button>
         </form>
 
     <?php
@@ -36,7 +37,7 @@ $row = $todos->fetch(PDO::FETCH_ASSOC);
     <form action="" method="post">
         <input type="text" name="title" placeholder="Enter your task title" required>
         <input type="text" name="task" placeholder="Enter your task description">
-        <button type="submit" class="" name="add">Add task</button>
+        <button type="submit" class="add" name="add">Add task</button>
     </form>
     <?php
     }
@@ -46,31 +47,30 @@ $todos = $conn->query("SELECT * FROM todos");
 while($row = $todos->fetch(PDO::FETCH_ASSOC)) {
     echo"<br>";
 ?>
-    <section class="todo-card"> <?php
+    <?php
     
     if($row['done'] === 1) { ?>
-        <section class="tittle-done"><?php echo $row['title'] . "\n"; ?></section>
-        <section class="task"><?php echo $row['task'] . "\n"; ?></section>
+        <div class="title-done"><?php echo $row['title'] . "\n"; ?></div>
+        <div class="task"><?php echo $row['task'] . "\n"; ?></div>
     
     <?php 
     }
     else {?>
-        <section class="tittle"><?php echo $row['title'] . "\n"; ?></section>
-        <section class="task"><?php echo $row['task'] . "\n"; ?></section>
+        <div class="title"><?php echo $row['title'] . "\n"; ?></div>
+        <div class="task"><?php echo $row['task'] . "\n"; ?></div>
+    
     <?php
-    }
+    } 
     ?>
-
-        <section class="icons">
-        <br>
-	    <a href="index.php?taskDone=<?php echo $row['id']; ?>"><button>&#10003;</button></a> 
-	    <a href="index.php?update=<?php echo $row['id']; ?>"><button>&#9998;</button></a> 
-        <a href="index.php?delete=<?php echo $row['id']; ?>"><button>&#10005;</button></a>
-	    
-        </section>
+        
+        <br>       
+	    <a href="index.php?taskDone=<?php echo $row['id']; ?>"><button class="icons">&#10004;</button></a> 
+	    <a href="index.php?update=<?php echo $row['id']; ?>"><button class="icons">&#9998;</button></a> 
+        <a href="index.php?delete=<?php echo $row['id']; ?>"><button class="icons">&#10008;</button></a>
+	            
         
         <?php
 }
-?>      </section>
+?>      
     </body>
 </html>
