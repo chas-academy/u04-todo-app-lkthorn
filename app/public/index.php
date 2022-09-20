@@ -47,30 +47,35 @@ $todos = $conn->query("SELECT * FROM todos");
 while($row = $todos->fetch(PDO::FETCH_ASSOC)) {
     echo"<br>";
 ?>
+
+
     <?php
     
     if($row['done'] === 1) { ?>
-        <div class="title-done"><?php echo $row['title'] . "\n"; ?></div>
-        <div class="task"><?php echo $row['task'] . "\n"; ?></div>
+    <div class="todo-card">
+        <div class="title-done">To Do: <?php echo $row['title'] . "\n"; ?></div>
+        <div class="task">Description: <?php echo $row['task'] . "\n"; ?></div>
     
     <?php 
     }
     else {?>
-        <div class="title"><?php echo $row['title'] . "\n"; ?></div>
-        <div class="task"><?php echo $row['task'] . "\n"; ?></div>
+    <div class="todo-card">
     
+        <div class="title">To Do: <?php echo $row['title'] . "\n"; ?></div>
+        <div class="task">Description: <?php echo $row['task'] . "\n"; ?></div>
+   
     <?php
     } 
     ?>
-        
         <br>       
 	    <a href="index.php?taskDone=<?php echo $row['id']; ?>"><button class="icons">&#10004;</button></a> 
 	    <a href="index.php?update=<?php echo $row['id']; ?>"><button class="icons">&#9998;</button></a> 
         <a href="index.php?delete=<?php echo $row['id']; ?>"><button class="icons">&#10008;</button></a>
 	            
-        
+    </div>
+    </div>
         <?php
 }
-?>      
+?>  
     </body>
 </html>

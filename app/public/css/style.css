@@ -5,11 +5,11 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 body {
-    background: rgb(179, 181, 187);    
+    background: #5cdb95;    
 }
 
 h1 {
-    color: rgb(48, 32, 184);
+    color: #05386b;
     font-size: 80px;
 }
 
@@ -23,8 +23,8 @@ input[type=text i] {
 }
 
 button.update {
-    background-color: rgb(30, 22, 150);
-    color: rgb(241, 234, 234);
+    background-color: #05386b;
+    color: #8ee4af;
     font-weight: bolder;
     padding: 12px 12px;
     margin: 4px 2px;
@@ -32,8 +32,8 @@ button.update {
     border-radius: 6px;
 }
 button.add {
-    background-color: rgb(30, 22, 150);
-    color: rgb(241, 234, 234);
+    background-color: #05386b;
+    color: #8ee4af;
     font-weight: bolder;
     padding: 12px 12px;
     margin: 4px 2px;
@@ -41,27 +41,32 @@ button.add {
     border-radius: 6px;
 }
 
+div.todo-card {
+    border-bottom-style: solid;
+    border-color: #8ee4af;    
+}
+
 div.title-done {
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bolder;
     text-decoration: line-through;
-    color: rgb(67, 69, 155);
+    color: #edf5e1;
 }
 div.title {
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bolder;    
-    color: rgb(67, 69, 155);
+    color: #edf5e1;
 }
 
 div.task {
     font-size: 20px;
-    color: rgb(67, 69, 155);
+    color: #edf5e1;
     font-style: italic;  
 }
 
 button.icons{
-    background-color: rgb(30, 22, 150);
-    color: rgb(241, 234, 234);
+    background-color: #05386b;
+    color: #8ee4af;
     font-weight: bolder;
     border-radius: 6px;
     margin: 1px;
