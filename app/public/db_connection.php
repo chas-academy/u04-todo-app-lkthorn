@@ -3,14 +3,14 @@
 $sName = "mysql:host=mysql;dbname=tutorial";
 $userName = "tutorial";
 $password = "secret";
-$db_name = "tutorial";
+$db_name = "todos";
 
 try {
     $conn = new PDO($sName, $userName, $password);
 
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    echo "Connected to the database";
+    // echo "Connected to the database";
 
 } 
 

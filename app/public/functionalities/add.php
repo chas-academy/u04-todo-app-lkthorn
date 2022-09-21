@@ -1,25 +1,16 @@
 <?php
-require '../db_connection.php';
+require './db_connection.php';
 
-if(isset($_POST['title'])){
-    
-
+if (isset($_POST['add'])) {
     $title = $_POST['title'];
-
-    if(empty($title)){
-        header("Location: ../index.php?mess=error");
-    }else {
-        $stmt = $conn->prepare("INSERT INTO todos(title) VALUE(?)");
-        $res = $stmt->execute([$title]);
-
-        if($res){
-            header("Location: ../index.php?mess=success"); 
-        }else {
-            header("Location: ../index.php");
-        }
-        $conn = null;
-        exit();
+    $task = $_POST['task'];
+    $stmt = $conn->prepare('INSERT INTO todos (title, task, done) VALUES (?, ?, 0)');
+    $stmt->execute([$title, $task]);
+    if (headers_sent()) {
+        die("Redirect failed.");
     }
-}else {
-    header("Location: ../index.php?mess=error");
+    else { 
+        exit(header("Location: ./index.php"));
+    }
+
 }

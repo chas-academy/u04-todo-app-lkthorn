@@ -1,3 +1,74 @@
+* {
+	padding: 5px;
+	margin: 5px;
+	box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 body {
-    background: rgb(240, 243, 245);
+    background: #5cdb95;    
+}
+
+h1 {
+    color: #05386b;
+    font-size: 80px;
+}
+
+input[type=text i] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid rgb(56, 52, 52);
+    border-radius: 6px;
+}
+
+button.update {
+    background-color: #05386b;
+    color: #8ee4af;
+    font-weight: bolder;
+    padding: 12px 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+button.add {
+    background-color: #05386b;
+    color: #8ee4af;
+    font-weight: bolder;
+    padding: 12px 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+div.todo-card {
+    border-bottom-style: solid;
+    border-color: #8ee4af;    
+}
+
+div.title-done {
+    font-size: 40px;
+    font-weight: bolder;
+    text-decoration: line-through;
+    color: #edf5e1;
+}
+div.title {
+    font-size: 40px;
+    font-weight: bolder;    
+    color: #edf5e1;
+}
+
+div.task {
+    font-size: 20px;
+    color: #edf5e1;
+    font-style: italic;  
+}
+
+button.icons{
+    background-color: #05386b;
+    color: #8ee4af;
+    font-weight: bolder;
+    border-radius: 6px;
+    margin: 1px;
+    padding: 8px 15px;
 }

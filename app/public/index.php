@@ -1,80 +1,81 @@
 <?php
 require 'db_connection.php';
+require 'functionalities/add.php';
+require 'functionalities/check.php';
+require 'functionalities/delete.php';
+require 'functionalities/edit.php';
+
+
+$todos = $conn->query("SELECT * FROM todos");
+$row = $todos->fetch(PDO::FETCH_ASSOC);
+
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do List</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>To-do list</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-    <div class="main-section">
-        <div class="add-section">
-            <form action="" method="POST" >
-                <?php if(isset($_GET['mess']) && $_GET['mess'] == 'error') { ?>
-                    <input type="text" name="title" placeholder="New task" />
-                <button type="submit"> Add task </button>
+    <h1>To-do List</h1>
+    <?php
+    if (isset($_GET['update'])){ ?>
+        <form action="" method="post">
+            <input type="text" name="title" placeholder="Edit your task title" required>
+            <input type="text" name="task" placeholder="Edit your task description">
+            <button type="submit" class="update" name="update">Update</button>
+        </form>
 
-                    <?php }else {?>
-                        <input type="text"
-                        name="title"
-                        style="border-color: #ff6666"
-                        placeholder="Field required"/>
-                        <button type="submit"> Add task </button>
-
-
-
-                        <?php } ?>
-                
-            </form>
-        </div>
-
-        <?php
-        $todos = $conn->query("SELECT * FROM todo_table ORDER BY id DESC");
-        ?>
-        <div class="todo-section">
-            <?php if ($todos->rowCount() <= 0) { ?>
-
-                <div class="todo-item">
-                    <!--maybe an image here-->
-                </div>
-            <?php } ?>
-
-            <?php
-            while ($todo = $todos->fetch(PDO::FETCH_ASSOC)) { ?>
-
-                <div class="todo-item">
-                    <span id="<?php echo $todo['id']; ?>" class="remove-to-do">X</span>
-                    <?php if ($todo['done']) { ?>
-                        <input type="checkbox"
-                        class="check-box"
-                        checked />
-
-                        <h2 class="done"><?php echo $todo['title'] ?></h2>
-                        
-                        <?php } else { ?>
-                            <input type="checkbox"
-                            class="check-box" />
-                            <h2><?php echo $todo['title']?></h2>
-
-                        <?php } ?>
-                    <br>
-                    <small>created:<?php echo $todo['date_time'] ?></small>
+    <?php
+    }
+    else { ?>
+    <form action="" method="post">
+        <input type="text" name="title" placeholder="Enter your task title" required>
+        <input type="text" name="task" placeholder="Enter your task description">
+        <button type="submit" class="add" name="add">Add task</button>
+    </form>
+    <?php
+    }
+    ?>
+<?php
+$todos = $conn->query("SELECT * FROM todos");
+while($row = $todos->fetch(PDO::FETCH_ASSOC)) {
+    echo"<br>";
+?>
 
 
-
-                </div>
-            <?php } ?>
-        </div>
+    <?php
+    
+    if($row['done'] === 1) { ?>
+    <div class="todo-card">
+        <div class="title-done">To Do: <?php echo $row['title'] . "\n"; ?></div>
+        <div class="task">Description: <?php echo $row['task'] . "\n"; ?></div>
+    
+    <?php 
+    }
+    else {?>
+    <div class="todo-card">
+    
+        <div class="title">To Do: <?php echo $row['title'] . "\n"; ?></div>
+        <div class="task">Description: <?php echo $row['task'] . "\n"; ?></div>
+   
+    <?php
+    } 
+    ?>
+        <br>       
+	    <a href="index.php?taskDone=<?php echo $row['id']; ?>"><button class="icons">&#10004;</button></a> 
+	    <a href="index.php?update=<?php echo $row['id']; ?>"><button class="icons">&#9998;</button></a> 
+        <a href="index.php?delete=<?php echo $row['id']; ?>"><button class="icons">&#10008;</button></a>
+	            
     </div>
-
-</body>
-
+    </div>
+        <?php
+}
+?>  
+    </body>
 </html>
